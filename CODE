@@ -1,0 +1,167 @@
+import sys
+import struct
+import threading
+import serial
+import serial.tools.list_ports
+import numpy as np
+import csv
+import os
+import time
+
+from PyQt6.QtWidgets import (
+    QApplication, QMainWindow, QWidget, QVBoxLayout, QPushButton,
+    QComboBox, QFileDialog, QLabel
+)
+from PyQt6.QtCore import QTimer
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
+from PyQt6 import QtCore
+
+
+class Principal(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        central = QWidget()
+        self.setCentralWidget(central)
+        layout = QVBoxLayout(central)
+
+        self.puertos = QComboBox()
+        layout.addWidget(self.puertos)
+
+        self.connect_btn = QPushButton("CONECTAR")
+        layout.addWidget(self.connect_btn)
+
+        self.save_btn = QPushButton("Guardar")
+        layout.addWidget(self.save_btn)
+
+        self.fs_label = QLabel("Frecuencia de muestreo: --- Hz")
+        layout.addWidget(self.fs_label)
+
+        self.graficaWidget = QWidget()
+        layout.addWidget(self.graficaWidget)
+
+        self.puertos_disponibles()
+
+        self.ser = None
+        self.connect_btn.clicked.connect(self.conectar)
+        self.save_btn.clicked.connect(self.guardar_datos)
+
+        # Configuración de tiempo
+        self.fs = 500  # Frecuencia asumida inicialmente
+        self.tiempo_grafica = 15  # 15 segundos visibles
+        self.buffer_tamano = self.fs * self.tiempo_grafica
+        self.y = np.zeros(self.buffer_tamano)
+        self.buffer_guardado = []
+
+        # Gráfica
+        self.fig = Figure()
+        self.ax = self.fig.add_subplot(111)
+        self.canvas = FigureCanvas(self.fig)
+        grafica_layout = QVBoxLayout()
+        grafica_layout.addWidget(self.canvas)
+        self.graficaWidget.setLayout(grafica_layout)
+
+        # Para cálculo de frecuencia de muestreo real
+        self.ultimo_tiempo = time.time()
+        self.contador_muestras = 0
+        self.timer_fs = QTimer()
+        self.timer_fs.timeout.connect(self.calcular_frecuencia_muestreo)
+        self.timer_fs.start(1000)  # Cada 1 segundo
+
+    def puertos_disponibles(self):
+        p = serial.tools.list_ports.comports()
+        for port in p:
+            self.puertos.addItem(port.device)
+
+    def conectar(self):
+        estado = self.connect_btn.text()
+        self.stop_event_ser = threading.Event()
+
+        if estado == "CONECTAR":
+            com = self.puertos.currentText()
+            try:
+                self.ser = serial.Serial(com, 115200)
+                self.hilo = threading.Thread(target=self.periodic_thread)
+                self.hilo.start()
+                self.connect_btn.setText("DESCONECTAR")
+                print("Puerto serial conectado")
+            except serial.SerialException as e:
+                print("Error en el puerto serial:", e)
+        else:
+            if self.ser and self.ser.is_open:
+                self.ser.close()
+            self.stop_event_ser.set()
+            self.hilo.join()
+            self.connect_btn.setText("CONECTAR")
+            print("Puerto serial desconectado")
+
+    def periodic_thread(self):
+        if self.ser is not None and self.ser.is_open:
+            try:
+                data = self.ser.read(50)  # Leemos 50 bytes
+                if len(data) == 50:
+                    data = struct.unpack('50B', data)
+                    for i in range(0, len(data), 2):
+                        if i + 1 < len(data):
+                            raw = data[i] * 100 + data[i + 1]
+                            voltaje = (raw / 4095) * 3.3
+
+                            self.y = np.roll(self.y, -1)
+                            self.y[-1] = voltaje
+
+                            self.buffer_guardado.append(voltaje)
+                            if len(self.buffer_guardado) > self.fs * 300:
+                                self.buffer_guardado.pop(0)
+
+                            self.contador_muestras += 1
+
+                    QtCore.QMetaObject.invokeMethod(
+                        self, "actualizar_grafica", QtCore.Qt.ConnectionType.QueuedConnection
+                    )
+            except Exception as e:
+                print("Error al leer datos:", e)
+
+        if not self.stop_event_ser.is_set():
+            threading.Timer(0.01, self.periodic_thread).start()
+
+    def calcular_frecuencia_muestreo(self):
+        print(f"Frecuencia de muestreo estimada: {self.contador_muestras} Hz")
+        self.fs_label.setText(f"Frecuencia de muestreo: {self.contador_muestras} Hz")
+        self.fs = self.contador_muestras
+        self.contador_muestras = 0
+
+    @QtCore.pyqtSlot()
+    def actualizar_grafica(self):
+        self.ax.clear()
+        self.ax.plot(np.linspace(0, self.tiempo_grafica, self.buffer_tamano), self.y)
+        self.ax.set_ylabel("Voltaje (V)")
+        self.ax.set_xlabel("Tiempo (s)")
+        self.ax.set_title("Señal ECG en Tiempo Real")
+        self.ax.grid(True)
+        self.canvas.draw()
+
+    def guardar_datos(self):
+        ruta, _ = QFileDialog.getSaveFileName(self, "Guardar archivo de ECG", "", "Archivos CSV (*.csv)")
+        if not ruta:
+            return
+
+        try:
+            with open(ruta, "w", newline='') as f:
+                writer = csv.writer(f)
+                writer.writerow(["Voltajes (V)"])
+                for v in self.buffer_guardado:
+                    writer.writerow([f"{v:.4f}"])
+            print(f"Datos de ECG guardados en {ruta}")
+        except Exception as e:
+            print("Error al guardar:", e)
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    ventana = Principal()
+    ventana.setWindowTitle("Visualizador de Señal ECG")
+    ventana.resize(800, 600)
+    ventana.show()
+    sys.exit(app.exec())
+ #Parte pre-procesamiento
