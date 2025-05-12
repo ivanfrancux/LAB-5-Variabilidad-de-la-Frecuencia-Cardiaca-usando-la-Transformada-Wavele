@@ -1,6 +1,6 @@
 # LAB-5- Variabilidad de la Frecuencia Cardiaca usando la Transformada Wavelet
 ## Introdución 
-En esta practica de laboratorio se desarrollo la captura de un ECG asi como se realizo todo su pre-procesamiento  recalcando la importancia de analizar la variabilidad de la frecuencia cardíaca (HRV) utilizando para este fin la transformada wavelet que nos permitira identificar cambios en las frecuencias características y analizar la dinámica temporal de la señal cardíaca.
+En esta practica de laboratorio se desarrollo la captura de un ECG asi como se realizo todo su pre-procesamiento  recalcando la importancia de analizar la variabilidad de la frecuencia cardíaca (HRV) utilizando para este fin la transformada wavelet que nos permitira identificar cambios en las frecuencias características y analizar la dinámica temporal de la señal cardíaca. Tambien sacando diferentes variables que nos oermitiran un analisis muy completo de nuestra señal electrocargiografica
 ## Marco Teorico 
 Actividad simpática y parasimpática del sistema nervioso autónomo,
 Efecto de la actividad simpática y parasimpática en la frecuencia
