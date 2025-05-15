@@ -155,7 +155,7 @@ A continuación, se mostrará la forma en que se crea la ventana, así como las 
 
 El RMSSD, así como el pNN50, son más altos en el usuario normal. Esto quiere decir que sí hay influencia del sistema simpático y que realmente esta variación muestra cómo cambia el estado de nuestro paciente, aunque no se llega al objetivo, que era un porcentaje más bajo.
 
-Como podemos evidenciar, se revisan las frecuencias y, en comparación, se logran observar algunos cambios clave. Entre estos, se nota que hay un poco más de inestabilidad en las curvas del usuario en estrés, así como también una mayor intensidad en algunas zonas rojas, lo cual indica que la onda tiene mayor energía. Esto se debe a una mayor actividad simpática.
+Como podemos evidenciar, se revisan las frecuencias y, en comparación, se logran observar algunos cambios clave. Entre estos, se nota que hay un poco más de inestabilidad en las curvas del usuario en estrés, así como también una mayor intensidad en algunas zonas rojas, lo cual indica que la onda tiene mayor energía. Esto se debe a una mayor actividad simpática. Aparte tambien podemos evidenciar que las rojas actuan alrededor del complejo QRS y las azules  despues lo que representa la ST.
 
 ## Anexo: Diagrama de flujo y preprocesamiento de la señal
 
