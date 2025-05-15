@@ -109,11 +109,21 @@ Por ultimo tenemos nuestra función de guardar nuestros datos con el objetivo pa
 En esta segunda parte del codigo podemos visuzalizar los estadísticos principales
 
 
-Se toma un filtro tipo IIR (Filtro Digital de Respuesta Infinita al Impulso) el cual en señales electrocardiográficas (ECG) permite eliminar ruidos y artefactos que interfieren con la correcta interpretación de la señal, sin dañar las características importantes del ECG. Este tipo de filtro ayuda a eliminar interferencias de baja frecuencia, como la deriva de línea base causada por movimientos o respiración, y ruidos de alta frecuencia, como interferencias eléctricas y actividad muscular (EMG). Al filtrar estas componentes indeseadas, se mejora la calidad de la señal y se facilita la detección precisa de eventos cardíacos como los complejos QRS, ondas P y T.  Aparte son eficientes a nivel computacionales, permitiendo un procesamiento en tiempo real con un bajo costo computacional. Para el diseño en  nuestro trabajo se toma en los rangos de una frecuencia baja de 0.5  Hz y la frecuencia de 45 Hz. Y se toman  para la wavelet 
+Se toma un filtro tipo IIR (Filtro Digital de Respuesta Infinita al Impulso) el cual en señales electrocardiográficas (ECG) permite eliminar ruidos y artefactos que interfieren con la correcta interpretación de la señal, sin dañar las características importantes del ECG. Este tipo de filtro ayuda a eliminar interferencias de baja frecuencia, como la deriva de línea base causada por movimientos o respiración, y ruidos de alta frecuencia, como interferencias eléctricas y actividad muscular (EMG). Al filtrar estas componentes indeseadas, se mejora la calidad de la señal y se facilita la detección precisa de eventos cardíacos como los complejos QRS, ondas P y T.  Aparte son eficientes a nivel computacionales, permitiendo un procesamiento en tiempo real con un bajo costo computacional. Para el diseño en  nuestro trabajo se toma en los rangos de una frecuencia baja de 0.5  Hz y la frecuencia de 45 Hz. 
 
+#### Usuario normal
 ![image](https://github.com/user-attachments/assets/27c27547-166e-49a9-97af-c10b6e22f081)
 
+Y se toma un espectrograma por medio de wavelet en este caso morlet gracias a esto podemos analizar la potencia de nuestra señal respecto 
+![image](https://github.com/user-attachments/assets/88fc8745-a2b6-40f3-83ff-2427891b4ebc)
+
+
+#### Usuario estresado
+![image](https://github.com/user-attachments/assets/b0c69052-0581-4693-9b7f-19fbeb9963ef)
+
 ## Anexo: Diagrama de flujo y preprocesamiento de la señal
+
+
 Se elaboro un diagrama  donde podrmos conocer el expliciatamente cómo llevarán a cabo el proyecto, las técnicas y herramientas que van a utilizar y los resultados que vana obtener
 Anexo 
 
