@@ -16,11 +16,12 @@ Para el desarrollo de este trabajo se utilizo una wavelwet tipo morlet la cual n
 
 
 ## Características de la señal adquirida
-Para la adquisición de la señal electrocardiográfica (ECG), se utilizó una tarjeta de adquisición de datos NI DAQ-6004; la cual ofrece una resolución de 12 bits, equivalente a 4096 niveles de cuantización. La frecuencia de muestreo se configuró en 800 Hz, un valor significativamente superior al mínimo requerido por el teorema de Nyquist. Dado que las señales cardíacas típicas se encuentran en un rango de 0.05 Hz a 100 Hz, una frecuencia de muestreo de al menos 200 Hz habría sido suficiente para evitar aliasing. Sin embargo, se optó por un muestreo más alta para  así garantizar una mayor precisión en la captura de detalles transitorios y mejorar la calidad de la señal.
+Para la adquisición de la señal electrocardiográfica (ECG), se utilizó una tarjeta de adquisición de datos NI DAQ-6004; la cual ofrece una resolución de 12 bits, equivalente a 4096 niveles de cuantización. La frecuencia de muestreo se configuró en 800 Hz, un valor significativamente superior al mínimo requerido por el teorema de Nyquist. Dado que las señales cardíacas típicas se encuentran en un rango de 0.05 Hz a 100 Hz, una frecuencia de muestreo de al menos 200 Hz habría sido suficiente para evitar aliasing. Sin embargo, se optó por un muestreo más alta para  así garantizar una mayor precisión en la captura de detalles transitorios y mejorar la calidad de la señal. El tiempo de muestreo utilizado es de 1.25 milisegundos entre cada muestra
 
-En esta primera etapa del experimento, se realizó la captura de la señal ECG en reposo, registrando las variaciones de voltaje asociadas a la actividad eléctrica del corazón. Esta señal fue procesada para eliminar artefactos, ruido y componentes no deseados, permitiendo un análisis más detallado de las características fisiológicas relevantes.
+En esta primera etapa del experimento, se realizó la captura de la señal ECG en reposo, registrando las variaciones de voltaje asociadas a la actividad eléctrica del corazón. Esta señal esta de manera cruda por ende podemos ver picos por fuera de lo esperado y con ruido.
 ![image](https://github.com/user-attachments/assets/1b0464ad-2829-4870-ba29-a9d0bba600c6)
 
+A continuación se evidencia el codigo utilizado para la conexcion el codigo completo se encuentra en los archivos 
 ```pyton
 
  def conectar(self):
@@ -46,55 +47,50 @@ En esta primera etapa del experimento, se realizó la captura de la señal ECG e
             print("Puerto desconectado")
 
 ```
+En esta interfaz bos podremos deslizar con slider por toda la muestra de 5 minutos, donde podremos identificar todas la caracteristicas de nuestra señal 
+
 ```pyton
 
 def __init__(self):
-        super().__init__()
-        self.setWindowTitle("ECG Signal Viewer")
-        self.resize(800, 600)
-        self.duracion = 15  # duración visible en segundos
-        self.fm = 1000
-        self.muestras_totales = int(self.duracion * self.fm)
+    super().__init__()
+    self.setWindowTitle("ECG Signal Viewer")
+    self.resize(800, 600)
+    self.duracion = 15  # duración visible en segundos
+    self.fm = 1000
+    self.muestras_totales = int(self.duracion * self.fm)
 
-        # Inicializa las otras variables
-        self.x = np.linspace(0, self.duracion, self.muestras_totales)
-        self.y = np.zeros(self.muestras_totales)
-        self.buffer_guardado = []
+    # Inicializa las otras variables
+    self.x = np.linspace(0, self.duracion, self.muestras_totales)
+    self.y = np.zeros(self.muestras_totales)
+    self.buffer_guardado = []
 
-        # Llama a la función init_ui después de inicializar las variables
-        self.init_ui()
-        self.puertos_disponibles()
+    # Llama a la función init_ui después de inicializar las variables
+    self.init_ui()
+    self.puertos_disponibles()
 
-        self.ser1 = None
-        self.hilo_serial = None
-        self.lectura_activa = False
+    self.ser1 = None
+    self.hilo_serial = None
+    self.lectura_activa = False
 
-        # Gráfico
-        self.fig = Figure()
-        self.ax = self.fig.add_subplot(111)
-        self.canvas = FigureCanvas(self.fig)
-        self.layout.addWidget(self.canvas)
-        self.line, = self.ax.plot(self.x, self.y, color='b')
-        self.ax.set_xlabel('Tiempo (s)')
-        self.ax.set_ylabel('Amplitud')
-        self.ax.set_title('Señal ECG en Tiempo Real')
-        self.ax.grid(True)
+    # Gráfico
+    self.fig = Figure()
+    self.ax = self.fig.add_subplot(111)
+    self.canvas = FigureCanvas(self.fig)
+    self.layout.addWidget(self.canvas)
+    self.line, = self.ax.plot(self.x, self.y, color='b')
+    self.ax.set_xlabel('Tiempo (s)')
+    self.ax.set_ylabel('Amplitud')
+    self.ax.set_title('Señal ECG en Tiempo Real')
+    self.ax.grid(True)
 
-        # Filtro IIR
-        self.fc_baja = 0.5
-        self.fc_alta = 45
-        self.fn_baja = self.fc_baja / (0.5 * self.fm)
-        self.fn_alta = self.fc_alta / (0.5 * self.fm)
-        self.orden_filtro = 2  # Orden del filtro IIR
-        self.b, self.a = butter(self.orden_filtro, [self.fn_baja, self.fn_alta], btype='band')
+    # Señales
+    self.signal_emitter = SignalEmitter()
+    self.signal_emitter.update_plot.connect(self.actualizar_grafico)
 
-        # Señales
-        self.signal_emitter = SignalEmitter()
-        self.signal_emitter.update_plot.connect(self.actualizar_grafico)
-
-        # Inicializamos el slider con un valor predeterminado
-        self.slider_value = 0
+    # Inicializamos el slider con un valor predeterminado
+    self.slider_value = 0
 ```
+Por ultimo tenemos nuestra función de guardar nuestros datos con el objetivo para poder hacer el procesamiento de la señal para su procesamiento para eliminar artefactos, ruido y componentes no deseados, permitiendo un análisis más detallado de las características fisiológicas relevantes.
 ```pyton
     def guardar_datos(self):
         archivo, _ = QFileDialog.getSaveFileName(self, "Guardar ECG", "", "CSV (*.csv)")
@@ -110,11 +106,15 @@ def __init__(self):
         except Exception as e:
             self.mostrar_error(f"Error al guardar: {e}")
 ```
+En esta segunda parte del codigo podemos visuzalizar los estadísticos principales
 
-![image](https://github.com/user-attachments/assets/e3f4b30a-2f1d-4aaa-9260-9e9389b1a12a)
 
+Se toma un filtro tipo IIR (Filtro Digital de Respuesta Infinita al Impulso) el cual en señales electrocardiográficas (ECG) permite eliminar ruidos y artefactos que interfieren con la correcta interpretación de la señal, sin dañar las características importantes del ECG. Este tipo de filtro ayuda a eliminar interferencias de baja frecuencia, como la deriva de línea base causada por movimientos o respiración, y ruidos de alta frecuencia, como interferencias eléctricas y actividad muscular (EMG). Al filtrar estas componentes indeseadas, se mejora la calidad de la señal y se facilita la detección precisa de eventos cardíacos como los complejos QRS, ondas P y T.  Aparte son eficientes a nivel computacionales, permitiendo un procesamiento en tiempo real con un bajo costo computacional. Para el diseño en  nuestro trabajo se toma en los rangos de una frecuencia baja de 0.5  Hz y la frecuencia de 45 Hz. Y se toman  para la wavelet 
 
-## Diagrama de flujo
+![image](https://github.com/user-attachments/assets/27c27547-166e-49a9-97af-c10b6e22f081)
+
+## Anexo: Diagrama de flujo y preprocesamiento de la señal
 Se elaboro un diagrama  donde podrmos conocer el expliciatamente cómo llevarán a cabo el proyecto, las técnicas y herramientas que van a utilizar y los resultados que vana obtener
 Anexo 
 
+Describe completamente el diseño de los filtros utilizados con todos sus parámetros, y justifica adecuadamente su elección.
