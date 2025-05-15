@@ -1,5 +1,5 @@
 # LAB-5- Variabilidad de la Frecuencia Cardiaca usando la Transformada Wavelet
-## Introdución 
+## Introducción 
 En esta práctica de laboratorio se llevó a cabo la captura de un electrocardiograma (ECG), así como su posterior preprocesamiento, con el objetivo de analizar en profundidad las características de la señal cardíaca. Un aspecto fundamental de este estudio fue el análisis de la variabilidad de la frecuencia cardíaca (HRV), un parámetro clave para evaluar el funcionamiento del sistema nervioso autónomo y la salud cardiovascular en general. Para ello, se empleó la transformada wavelet, una herramienta matemática que permite identificar cambios en las frecuencias características de la señal y analizar su dinámica temporal con alta precisión.
 
 ## Conceptos previos de análisis del Sistema Nervioso Autónomo mediante HRV y Transformada Wavelet
