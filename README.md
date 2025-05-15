@@ -106,20 +106,40 @@ Por ultimo tenemos nuestra función de guardar nuestros datos con el objetivo pa
         except Exception as e:
             self.mostrar_error(f"Error al guardar: {e}")
 ```
-En esta segunda parte del codigo podemos visuzalizar los estadísticos principales
+## Procesamientio
+En esta segunda parte del codigo podemos visuzalizar los estadísticos principales, así como tambien el HRV 
+
+```pyton
+
+```
+se toma apartir del.......
 
 
 Se toma un filtro tipo IIR (Filtro Digital de Respuesta Infinita al Impulso) el cual en señales electrocardiográficas (ECG) permite eliminar ruidos y artefactos que interfieren con la correcta interpretación de la señal, sin dañar las características importantes del ECG. Este tipo de filtro ayuda a eliminar interferencias de baja frecuencia, como la deriva de línea base causada por movimientos o respiración, y ruidos de alta frecuencia, como interferencias eléctricas y actividad muscular (EMG). Al filtrar estas componentes indeseadas, se mejora la calidad de la señal y se facilita la detección precisa de eventos cardíacos como los complejos QRS, ondas P y T.  Aparte son eficientes a nivel computacionales, permitiendo un procesamiento en tiempo real con un bajo costo computacional. Para el diseño en  nuestro trabajo se toma en los rangos de una frecuencia baja de 0.5  Hz y la frecuencia de 45 Hz. 
 
+```pyton
+
+```
+A continuación se evidenciara la forma d e la creación  de la ventena asi como las graficas para el ánalisis de las frecuencias
+```pyton
+
+```
+
 #### Usuario normal
 ![image](https://github.com/user-attachments/assets/27c27547-166e-49a9-97af-c10b6e22f081)
 ![image](https://github.com/user-attachments/assets/88fc8745-a2b6-40f3-83ff-2427891b4ebc)
- Y se toma un espectrograma por medio de wavelet en este caso morlet gracias a esto podemos analizar la potencia de nuestra señal respecto
 
+![image](https://github.com/user-attachments/assets/32d3b45d-116c-4a15-9c6b-60060598d13c)
+
+ Y se toma un espectrograma por medio de wavelet en este caso morlet gracias a esto podemos analizar la potencia de nuestra señal respecto tambien se dan graficas para el analisis que se ralizará despúes del usurio estresado.
 #### Usuario estresado
 ![image](https://github.com/user-attachments/assets/b0c69052-0581-4693-9b7f-19fbeb9963ef)
 ![image](https://github.com/user-attachments/assets/e514a960-dbaa-4efb-b7dc-a9487a805e7d)
 
+![image](https://github.com/user-attachments/assets/ccbd07a0-5309-4617-920b-1a4460a891d0)
+
+
+Como podemos evidenciar se revisan respecto las frecuencias y en comprativa se logra evidenciar unos cambios clave entre  esos tenemos 
 ## Anexo: Diagrama de flujo y preprocesamiento de la señal
 
 
