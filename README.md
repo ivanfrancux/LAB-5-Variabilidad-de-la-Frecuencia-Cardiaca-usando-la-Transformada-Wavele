@@ -22,7 +22,9 @@ Para el desarrollo de este trabajo se utilizo una wavelwet tipo morlet la cual n
 El RMSSD (Raíz Cuadrada de la Media de las Diferencias Sucesivas) es un indicador de la actividad del sistema nervioso parasimpático, donde valores elevados reflejan un estado de recuperación óptimo de  un tema físico y mental. Por el contrario, un RMSSD reducido sugiere predominio de la actividad simpática, vinculado a situaciones de estrés, fatiga, sobreentrenamiento. Por su parte, el pNN50 (Porcentaje de Intervalos R-R con Diferencias Superiores a 50 ms) cuantifica la variabilidad instantánea entre latidos: un porcentaje alto indica una función autonómica saludable y un estado de relajación, mientras que valores bajos pueden señalar estrés, ansiedad o deterioro en la regulación cardiovascular. Ambos parámetros, en conjunto, proporcionan una visión integral del equilibrio autonómico y su relación con el estado fisiológico y clínico del individuo.
 
 Desviación estándar: ![image](https://github.com/user-attachments/assets/9f63ced9-92a0-43dc-b519-ecf8094b1555)
-Root Mean Square of Successive Differences: ![image](https://github.com/user-attachments/assets/f5a49a1f-5dec-484b-b6bf-c7b6f47641a2) 
+
+
+![image](https://github.com/user-attachments/assets/f5a49a1f-5dec-484b-b6bf-c7b6f47641a2) 
 
 ![image](https://github.com/user-attachments/assets/078bef15-bc74-43c2-b8ce-f69f1839af08)
 
