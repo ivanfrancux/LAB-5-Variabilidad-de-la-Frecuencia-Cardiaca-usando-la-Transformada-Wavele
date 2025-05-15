@@ -6,13 +6,25 @@ En esta práctica de laboratorio se llevó a cabo la captura de un electrocardio
 El Sistema Nervioso Autónomo regula funciones vitales como la frecuencia cardíaca, siendo clave en la Variabilidad de la Frecuencia Cardíaca (HRV); el cual es un indicador de salud cardiovascular que  se evidencia en las variaciones en los intervalos del ciclo cardiaco. Un mayor HRV indica un SNA equilibrado, mientras que una reducción puede asociarse a estrés o patologías .
 
 El Sistema Nervioso Autónomo (SNA) regula funciones vitales como la frecuencia cardíaca, desempeñando un papel fundamental en la Variabilidad de la Frecuencia Cardíaca (HRV). Este parámetro, que cuantifica las variaciones en los intervalos del ciclo cardíaco (R-R), constituye un importante indicador de salud cardiovascular. Valores elevados de HRV reflejan un equilibrio adecuado del SNA, mientras que su disminución puede asociarse a condiciones de estrés o diversas patologías cardíacas. Para su análisis, la Transformada Wavelet es una herramienta importante puesto que permite descomponer la señal ECG en diferentes componentes frecuenciales, identificando patrones temporales y espectrales que métodos tradicionales (como la FFT) podrían pasar por alto. Esto facilita la detección de alteraciones en el dominio del tiempo-frecuencia, ofreciendo una visión más completa de la dinámica cardíaca y su relación con el SNA.
-![image](https://github.com/user-attachments/assets/25b2aa97-2656-469d-9434-57fb6d3c9407)
+
+
+![image](https://github.com/user-attachments/assets/25b2aa97-2656-469d-9434-57fb6d3c9407) 
+
+
+
 
 
 Para el desarrollo de este trabajo se utilizo una wavelwet tipo morlet la cual nos permite descomponer la señal ECG en sus componentes frecuenciales e identificar patrones temporales y espectrales complejos. El componente de baja frecuencia (LF, 0.04-0.15 Hz), que refleja predominantemente la actividad simpática modulada por los barorreflejos, y la banda de alta frecuencia (HF, 0.15-0.4 Hz), asociada a la influencia parasimpática y sincronizada con la respiración. El cociente LF/HF cuantifica el equilibrio autonómico, donde valores elevados sugieren predominio simpático, mientras que valores reducidos indican mayor tono vagal, proporcionando así información clínicamente relevante sobre la regulación cardiovascular.  Sirve para evaluar el equilibrio entre el sistema simpático y parasimpático. 
 
 ![image](https://github.com/user-attachments/assets/b8b23c58-225d-49c5-9a56-25c0050524bc)
 
+
+El RMSSD (Raíz Cuadrada de la Media de las Diferencias Sucesivas) es un indicador de la actividad del sistema nervioso parasimpático, donde valores elevados reflejan un estado de recuperación óptimo de  un tema físico y mental. Por el contrario, un RMSSD reducido sugiere predominio de la actividad simpática, vinculado a situaciones de estrés, fatiga, sobreentrenamiento. Por su parte, el pNN50 (Porcentaje de Intervalos R-R con Diferencias Superiores a 50 ms) cuantifica la variabilidad instantánea entre latidos: un porcentaje alto indica una función autonómica saludable y un estado de relajación, mientras que valores bajos pueden señalar estrés, ansiedad o deterioro en la regulación cardiovascular. Ambos parámetros, en conjunto, proporcionan una visión integral del equilibrio autonómico y su relación con el estado fisiológico y clínico del individuo.
+
+Desviación estándar: ![image](https://github.com/user-attachments/assets/9f63ced9-92a0-43dc-b519-ecf8094b1555)
+Root Mean Square of Successive Differences: ![image](https://github.com/user-attachments/assets/f5a49a1f-5dec-484b-b6bf-c7b6f47641a2) 
+
+![image](https://github.com/user-attachments/assets/078bef15-bc74-43c2-b8ce-f69f1839af08)
 
 
 ## Características de la señal adquirida
@@ -90,7 +102,7 @@ def __init__(self):
     # Inicializamos el slider con un valor predeterminado
     self.slider_value = 0
 ```
-Por ultimo tenemos nuestra función de guardar nuestros datos con el objetivo para poder hacer el procesamiento de la señal para su procesamiento para eliminar artefactos, ruido y componentes no deseados, permitiendo un análisis más detallado de las características fisiológicas relevantes.
+Se implementa una función para guardar los datos, con el objetivo de permitir su posterior procesamiento. Esto facilita la eliminación de artefactos, ruido y componentes no deseados, lo que a su vez permite realizar un análisis más detallado de las características fisiológicas relevantes.
 ```pyton
     def guardar_datos(self):
         archivo, _ = QFileDialog.getSaveFileName(self, "Guardar ECG", "", "CSV (*.csv)")
@@ -107,7 +119,7 @@ Por ultimo tenemos nuestra función de guardar nuestros datos con el objetivo pa
             self.mostrar_error(f"Error al guardar: {e}")
 ```
 ## Procesamientio
-En esta segunda parte del codigo podemos visuzalizar los estadísticos principales, así como tambien el HRV 
+En esta segunda parte del codigo podemos visuzalizar los estadísticos principales
 
 ```pyton
 
@@ -120,7 +132,7 @@ Se toma un filtro tipo IIR (Filtro Digital de Respuesta Infinita al Impulso) el 
 ```pyton
 
 ```
-A continuación se evidenciara la forma d e la creación  de la ventena asi como las graficas para el ánalisis de las frecuencias
+A continuación, se mostrará la forma en que se crea la ventana, así como las gráficas utilizadas para el análisis de las frecuencias.
 ```pyton
 
 ```
@@ -131,15 +143,18 @@ A continuación se evidenciara la forma d e la creación  de la ventena asi como
 
 ![image](https://github.com/user-attachments/assets/32d3b45d-116c-4a15-9c6b-60060598d13c)
 
- Y se toma un espectrograma por medio de wavelet en este caso morlet gracias a esto podemos analizar la potencia de nuestra señal respecto tambien se dan graficas para el analisis que se ralizará despúes del usurio estresado.
-#### Usuario estresado
+ Se toma un espectrograma por medio de la wavelet, en este caso Morlet. Gracias a esto, podemos analizar la potencia de nuestra señal. Además, se generan gráficas para el análisis que se realizará después con el usuario estresado.
+#### Usuario en estado de estres
 ![image](https://github.com/user-attachments/assets/b0c69052-0581-4693-9b7f-19fbeb9963ef)
 ![image](https://github.com/user-attachments/assets/e514a960-dbaa-4efb-b7dc-a9487a805e7d)
 
 ![image](https://github.com/user-attachments/assets/ccbd07a0-5309-4617-920b-1a4460a891d0)
 
 
-Como podemos evidenciar se revisan respecto las frecuencias y en comprativa se logra evidenciar unos cambios clave entre  esos tenemos 
+El RMSSD, así como el pNN50, son más altos en el usuario normal. Esto quiere decir que sí hay influencia del sistema simpático y que realmente esta variación muestra cómo cambia el estado de nuestro paciente, aunque no se llega al objetivo, que era un porcentaje más bajo.
+
+Como podemos evidenciar, se revisan las frecuencias y, en comparación, se logran observar algunos cambios clave. Entre estos, se nota que hay un poco más de inestabilidad en las curvas del usuario en estrés, así como también una mayor intensidad en algunas zonas rojas, lo cual indica que la onda tiene mayor energía. Esto se debe a una mayor actividad simpática.
+
 ## Anexo: Diagrama de flujo y preprocesamiento de la señal
 
 
