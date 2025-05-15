@@ -2,15 +2,16 @@
 ## Introdución 
 En esta práctica de laboratorio se llevó a cabo la captura de un electrocardiograma (ECG), así como su posterior preprocesamiento, con el objetivo de analizar en profundidad las características de la señal cardíaca. Un aspecto fundamental de este estudio fue el análisis de la variabilidad de la frecuencia cardíaca (HRV), un parámetro clave para evaluar el funcionamiento del sistema nervioso autónomo y la salud cardiovascular en general. Para ello, se empleó la transformada wavelet, una herramienta matemática que permite identificar cambios en las frecuencias características de la señal y analizar su dinámica temporal con alta precisión.
 
-## Teoria  
-Actividad simpática y parasimpática del sistema nervioso autónomo,
-Efecto de la actividad simpática y parasimpática en la frecuencia
-cardiaca,
-- Variabilidad de la frecuencia cardiaca (HRV) medida como fluctuaciones
-en el intervalo R-R, y las frecuencias de interés en este análisis,
-- Transformada Wavelet: definición, usos y tipos de wavelet utilizadas en
-señales biológicas.
-relacionados con el SNA, la HRV y la transformada wavelet
+## Conceptos previos de análisis del Sistema Nervioso Autónomo mediante HRV y Transformada Wavelet
+El Sistema Nervioso Autónomo regula funciones vitales como la frecuencia cardíaca, siendo clave en la Variabilidad de la Frecuencia Cardíaca (HRV); el cual es un indicador de salud cardiovascular que  se evidencia en las variaciones en los intervalos del ciclo cardiaco. Un mayor HRV indica un SNA equilibrado, mientras que una reducción puede asociarse a estrés o patologías .
+
+El Sistema Nervioso Autónomo (SNA) regula funciones vitales como la frecuencia cardíaca, desempeñando un papel fundamental en la Variabilidad de la Frecuencia Cardíaca (HRV). Este parámetro, que cuantifica las variaciones en los intervalos del ciclo cardíaco (R-R), constituye un importante indicador de salud cardiovascular. Valores elevados de HRV reflejan un equilibrio adecuado del SNA, mientras que su disminución puede asociarse a condiciones de estrés o diversas patologías cardíacas. Para su análisis, la Transformada Wavelet es una herramienta importante puesto que permite descomponer la señal ECG en diferentes componentes frecuenciales, identificando patrones temporales y espectrales que métodos tradicionales (como la FFT) podrían pasar por alto. Esto facilita la detección de alteraciones en el dominio del tiempo-frecuencia, ofreciendo una visión más completa de la dinámica cardíaca y su relación con el SNA.
+![image](https://github.com/user-attachments/assets/25b2aa97-2656-469d-9434-57fb6d3c9407)
+
+
+Para el desarrollo de este trabajo se utilizo una wavelwet tipo morlet la cual nos permite descomponer la señal ECG en sus componentes frecuenciales e identificar patrones temporales y espectrales complejos. El componente de baja frecuencia (LF, 0.04-0.15 Hz), que refleja predominantemente la actividad simpática modulada por los barorreflejos, y la banda de alta frecuencia (HF, 0.15-0.4 Hz), asociada a la influencia parasimpática y sincronizada con la respiración. El cociente LF/HF cuantifica el equilibrio autonómico, donde valores elevados sugieren predominio simpático, mientras que valores reducidos indican mayor tono vagal, proporcionando así información clínicamente relevante sobre la regulación cardiovascular.  Sirve para evaluar el equilibrio entre el sistema simpático y parasimpático. 
+
+![image](https://github.com/user-attachments/assets/b8b23c58-225d-49c5-9a56-25c0050524bc)
 
 
 
