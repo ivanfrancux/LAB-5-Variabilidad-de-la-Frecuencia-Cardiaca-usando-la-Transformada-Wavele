@@ -121,22 +121,66 @@ Se implementa una función para guardar los datos, con el objetivo de permitir s
             self.mostrar_error(f"Error al guardar: {e}")
 ```
 ## Procesamientio
-En esta segunda parte del codigo podemos visuzalizar los estadísticos principales
-
-```pyton
-
-```
-se toma apartir del.......
-
 
 Se toma un filtro tipo IIR (Filtro Digital de Respuesta Infinita al Impulso) el cual en señales electrocardiográficas (ECG) permite eliminar ruidos y artefactos que interfieren con la correcta interpretación de la señal, sin dañar las características importantes del ECG. Este tipo de filtro ayuda a eliminar interferencias de baja frecuencia, como la deriva de línea base causada por movimientos o respiración, y ruidos de alta frecuencia, como interferencias eléctricas y actividad muscular (EMG). Al filtrar estas componentes indeseadas, se mejora la calidad de la señal y se facilita la detección precisa de eventos cardíacos como los complejos QRS, ondas P y T.  Aparte son eficientes a nivel computacionales, permitiendo un procesamiento en tiempo real con un bajo costo computacional. Para el diseño en  nuestro trabajo se toma en los rangos de una frecuencia baja de 0.5  Hz y la frecuencia de 45 Hz. 
 
 ```pyton
-
+ def init_filter(self):
+        fc_baja = 0.5
+        fc_alta = 45
+        fn_baja = fc_baja / (0.5 * self.fm)
+        fn_alta = fc_alta / (0.5 * self.fm)
+        orden = 2
+        self.b, self.a = butter(orden, [fn_baja, fn_alta], btype='band')
 ```
-A continuación, se mostrará la forma en que se crea la ventana, así como las gráficas utilizadas para el análisis de las frecuencias.
+A continuación, se mostrará la forma en que se crea la wavelet para la señal, así como las gráficas utilizadas para el análisis de las frecuencias.
 ```pyton
+import pywt
 
+def actualizar_wavelet_y_bandas(self, datos):
+        self.ax_wavelet.clear()
+        self.ax_bandas.clear()
+
+        self.ax_wavelet.set_title("Transformada Wavelet Morlet")
+        self.ax_wavelet.set_ylabel("Escalas")
+        self.ax_wavelet.set_xlabel("Tiempo (s)")
+
+        self.ax_bandas.set_title("Potencia en bandas de frecuencia (Baja y Alta)")
+        self.ax_bandas.set_xlabel("Tiempo (s)")
+        self.ax_bandas.set_ylabel("Potencia")
+        self.ax_bandas.grid(True)
+
+        # CWT
+        scales = np.arange(1, 201)  # Escalas hasta 200
+        coef, freqs = pywt.cwt(datos, scales, 'cmor1.5-1.0', sampling_period=1/self.fm)
+
+        # Mostrar mapa wavelet
+        self.ax_wavelet.imshow(
+            np.abs(coef),
+            extent=[self.x[0], self.x[-1], scales.min(), scales.max()],
+            cmap='jet',
+            aspect='auto',
+            origin='lower'
+        )
+
+        # Definir bandas en frecuencia
+        banda_baja = (freqs >= 0.5) & (freqs <= 5)
+        banda_alta = (freqs > 5) & (freqs <= 45)
+
+        # Calcular potencia (magnitud al cuadrado) promedio en cada banda para cada instante temporal
+        potencia_baja = np.mean(np.abs(coef[banda_baja, :])**2, axis=0)
+        potencia_alta = np.mean(np.abs(coef[banda_alta, :])**2, axis=0)
+
+        # Graficar potencias en bandas
+        self.ax_bandas.plot(self.x, potencia_baja, label='Baja frecuencia (0.5-5 Hz)', color='blue')
+        self.ax_bandas.plot(self.x, potencia_alta, label='Alta frecuencia (5-45 Hz)', color='red')
+        self.ax_bandas.legend()
+
+        # Análisis crítico simple (impresión)
+        cambio_baja = potencia_baja.max() - potencia_baja.min()
+        cambio_alta = potencia_alta.max() - potencia_alta.min()
+        print(f"Cambio potencia banda baja: {cambio_baja:.3f}")
+        print(f"Cambio potencia banda alta: {cambio_alta:.3f}")
 ```
 
 #### Usuario normal
