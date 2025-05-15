@@ -185,17 +185,24 @@ def actualizar_wavelet_y_bandas(self, datos):
 ```
 
 #### Usuario normal
-![image](https://github.com/user-attachments/assets/27c27547-166e-49a9-97af-c10b6e22f081)
-![image](https://github.com/user-attachments/assets/88fc8745-a2b6-40f3-83ff-2427891b4ebc)
+![image](https://github.com/user-attachments/assets/5d32a850-1300-4204-a5ff-55726ff5bc90)
 
-![image](https://github.com/user-attachments/assets/32d3b45d-116c-4a15-9c6b-60060598d13c)
+![image](https://github.com/user-attachments/assets/e876e39f-5d11-4b48-8334-32395e3d4959)
+
+
+![image](https://github.com/user-attachments/assets/cda3b57d-9da1-40e9-86c4-f203a9e6e13c)
+
 
  Se toma un espectrograma por medio de la wavelet, en este caso Morlet. Gracias a esto, podemos analizar la potencia de nuestra señal. Además, se generan gráficas para el análisis que se realizará después con el usuario estresado.
 #### Usuario en estado de estres
-![image](https://github.com/user-attachments/assets/b0c69052-0581-4693-9b7f-19fbeb9963ef)
-![image](https://github.com/user-attachments/assets/e514a960-dbaa-4efb-b7dc-a9487a805e7d)
 
-![image](https://github.com/user-attachments/assets/ccbd07a0-5309-4617-920b-1a4460a891d0)
+![image](https://github.com/user-attachments/assets/af82bf13-b33e-43a4-b7da-4be94bbfdda9)
+
+![image](https://github.com/user-attachments/assets/49598465-e4df-4863-a080-e1e84953eecc)
+
+
+![image](https://github.com/user-attachments/assets/20eca59d-8610-434e-a3bc-d1f5d4cb8b4b)
+
 
 
 El RMSSD, así como el pNN50, son más altos en el usuario normal. Esto quiere decir que sí hay influencia del sistema simpático y que realmente esta variación muestra cómo cambia el estado de nuestro paciente, aunque no se llega al objetivo, que era un porcentaje más bajo.
