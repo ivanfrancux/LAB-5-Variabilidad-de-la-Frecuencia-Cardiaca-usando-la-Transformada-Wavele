@@ -113,13 +113,12 @@ Se toma un filtro tipo IIR (Filtro Digital de Respuesta Infinita al Impulso) el 
 
 #### Usuario normal
 ![image](https://github.com/user-attachments/assets/27c27547-166e-49a9-97af-c10b6e22f081)
-
-Y se toma un espectrograma por medio de wavelet en este caso morlet gracias a esto podemos analizar la potencia de nuestra señal respecto 
 ![image](https://github.com/user-attachments/assets/88fc8745-a2b6-40f3-83ff-2427891b4ebc)
-
+ Y se toma un espectrograma por medio de wavelet en este caso morlet gracias a esto podemos analizar la potencia de nuestra señal respecto
 
 #### Usuario estresado
 ![image](https://github.com/user-attachments/assets/b0c69052-0581-4693-9b7f-19fbeb9963ef)
+![image](https://github.com/user-attachments/assets/e514a960-dbaa-4efb-b7dc-a9487a805e7d)
 
 ## Anexo: Diagrama de flujo y preprocesamiento de la señal
 
