@@ -21,7 +21,8 @@ Para el desarrollo de este trabajo se utilizo una wavelwet tipo morlet la cual n
 
 El RMSSD (Raíz Cuadrada de la Media de las Diferencias Sucesivas) es un indicador de la actividad del sistema nervioso parasimpático, donde valores elevados reflejan un estado de recuperación óptimo de  un tema físico y mental. Por el contrario, un RMSSD reducido sugiere predominio de la actividad simpática, vinculado a situaciones de estrés, fatiga, sobreentrenamiento. Por su parte, el pNN50 (Porcentaje de Intervalos R-R con Diferencias Superiores a 50 ms) cuantifica la variabilidad instantánea entre latidos: un porcentaje alto indica una función autonómica saludable y un estado de relajación, mientras que valores bajos pueden señalar estrés, ansiedad o deterioro en la regulación cardiovascular. Ambos parámetros, en conjunto, proporcionan una visión integral del equilibrio autonómico y su relación con el estado fisiológico y clínico del individuo.
 
-Desviación estándar: ![image](https://github.com/user-attachments/assets/9f63ced9-92a0-43dc-b519-ecf8094b1555)
+Desviación estándar:
+![image](https://github.com/user-attachments/assets/9f63ced9-92a0-43dc-b519-ecf8094b1555)
 
 
 ![image](https://github.com/user-attachments/assets/f5a49a1f-5dec-484b-b6bf-c7b6f47641a2) 
@@ -120,7 +121,7 @@ Se implementa una función para guardar los datos, con el objetivo de permitir s
         except Exception as e:
             self.mostrar_error(f"Error al guardar: {e}")
 ```
-## Procesamientio
+## Procesamiento
 
 Se toma un filtro tipo IIR (Filtro Digital de Respuesta Infinita al Impulso) el cual en señales electrocardiográficas (ECG) permite eliminar ruidos y artefactos que interfieren con la correcta interpretación de la señal, sin dañar las características importantes del ECG. Este tipo de filtro ayuda a eliminar interferencias de baja frecuencia, como la deriva de línea base causada por movimientos o respiración, y ruidos de alta frecuencia, como interferencias eléctricas y actividad muscular (EMG). Al filtrar estas componentes indeseadas, se mejora la calidad de la señal y se facilita la detección precisa de eventos cardíacos como los complejos QRS, ondas P y T.  Aparte son eficientes a nivel computacionales, permitiendo un procesamiento en tiempo real con un bajo costo computacional. Para el diseño en  nuestro trabajo se toma en los rangos de una frecuencia baja de 0.5  Hz y la frecuencia de 45 Hz. 
 
