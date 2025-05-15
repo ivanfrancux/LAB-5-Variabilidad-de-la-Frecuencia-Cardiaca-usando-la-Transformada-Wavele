@@ -1,4 +1,4 @@
-import threading 
+import threading
 import serial
 import struct
 import numpy as np
@@ -15,7 +15,7 @@ from PyQt5.QtWidgets import (
 )
 
 class SignalEmitter(QObject):
-    update_plot = pyqtSignal(object)  # Cambiado a object para pasar tupla (datos, x)
+    update_plot = pyqtSignal(object)
 
 class Principal(QWidget):
     def __init__(self):
@@ -23,10 +23,9 @@ class Principal(QWidget):
         self.setWindowTitle("ECG Signal Viewer")
         self.resize(1000, 900)
 
-        # Parámetros de duración
         self.duracion_total = 300  # 5 minutos
         self.duracion_ventana = 60  # Mostrar 1 minuto
-        self.fm = 1000  # Frecuencia de muestreo (Hz)
+        self.fm = 1000
         self.muestras_ventana = int(self.duracion_ventana * self.fm)
 
         self.buffer_guardado = []
@@ -48,8 +47,8 @@ class Principal(QWidget):
         self.slider = QSlider(Qt.Horizontal)
         self.slider.setMinimum(0)
         self.slider.setValue(0)
-        self.slider.setTickInterval(self.fm * 5)  # Marcas cada 5 segundos
-        self.slider.setSingleStep(self.fm)  # Avance de 1 segundo
+        self.slider.setTickInterval(self.fm * 5)
+        self.slider.setSingleStep(self.fm)
         self.slider.valueChanged.connect(self.actualizar_slider)
         self.layout.addWidget(self.slider)
 
@@ -90,7 +89,7 @@ class Principal(QWidget):
         try:
             with open(archivo, "r") as f:
                 reader = csv.reader(f)
-                next(reader)  # Saltar encabezado
+                next(reader)
                 datos = [float(row[0]) for row in reader]
 
             self.buffer_guardado = datos
@@ -106,7 +105,10 @@ class Principal(QWidget):
         datos_muestra = self.buffer_guardado[offset:offset + self.muestras_ventana]
         if len(datos_muestra) < self.muestras_ventana:
             datos_muestra = [0] * (self.muestras_ventana - len(datos_muestra)) + datos_muestra
-        filtrado = lfilter(self.b, self.a, np.array(datos_muestra))
+
+        datos_muestra = (np.array(datos_muestra) - np.mean(datos_muestra)) / np.std(datos_muestra)
+        filtrado = lfilter(self.b, self.a, datos_muestra)
+
         x_offset = offset / self.fm
         x_din = np.linspace(x_offset, x_offset + self.duracion_ventana, self.muestras_ventana)
         self.signal_emitter.update_plot.emit((filtrado, x_din))
@@ -114,7 +116,7 @@ class Principal(QWidget):
     def actualizar_grafico(self, datos_yx):
         datos, x_din = datos_yx
         self.line.set_data(x_din, datos)
-        self.x = x_din  # Actualizar eje x dinámicamente
+        self.x = x_din
         self.ax.relim()
         self.ax.autoscale_view()
         self.actualizar_picos(datos)
@@ -122,19 +124,22 @@ class Principal(QWidget):
         self.canvas.draw()
 
     def actualizar_picos(self, datos):
-        picos, _ = find_peaks(datos, height=0.5, distance=300)
+        threshold = np.percentile(datos, 75)
+        picos, _ = find_peaks(datos, height=threshold, distance=int(0.6 * self.fm))
         self.line_picos.set_data(self.x[picos], datos[picos])
 
-        rr_intervals = np.diff(picos) / self.fm
-        if rr_intervals.size:
+        if len(picos) >= 2:
+            rr_intervals = np.diff(picos) / self.fm
             print(f"Media RR: {np.mean(rr_intervals):.4f} s, Desv. Estándar: {np.std(rr_intervals):.4f} s")
+        else:
+            print("No hay suficientes picos detectados.")
 
     def actualizar_wavelet(self, datos):
         self.ax_wavelet.clear()
         self.ax_wavelet.set_title("Transformada Wavelet Morlet", pad=20)
         self.ax_wavelet.set_position([0.1, 0.08, 0.85, 0.30])
 
-        scales = np.arange(1, 201)  # Escalas hasta 200
+        scales = np.arange(1, 201)
         coef, freqs = pywt.cwt(datos, scales, 'cmor1.5-1.0', sampling_period=1/self.fm)
 
         self.ax_wavelet.imshow(
