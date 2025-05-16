@@ -235,11 +235,13 @@ Fases de la Captura ECG
 **Segmentación para Análisis**
 Para el análisis, se extrajo una ventana representativa de 5 minutos que incluyó las tres fases clave. Esta segmentación, basada en marcas temporales internas, permitió aplicar métricas de HRV tanto en el dominio del tiempo como en el tiempo-frecuencia mediante la transformada wavelet.
 
-![57b5a679-ba6c-4547-bc09-ceefaab09f78](https://github.com/user-attachments/assets/d6a1d522-8876-4a35-b18b-4dd4fb2f6107)
+![image](https://github.com/user-attachments/assets/623068cb-9ce5-45e5-9545-7254d3e46011)
 
-![57b5a679-ba6c-4547-bc09-ceefaab09f78](https://github.com/user-attachments/assets/b63cf875-1baf-4332-abe3-c0244e9e7ddb)
+![f33e7b88-7129-41c4-a537-f98de3f6672d](https://github.com/user-attachments/assets/31319269-9d41-4110-b222-635aa8886df8)
 
-![6ee3fa31-44c7-47dc-9ee0-7766e5ba66d7](https://github.com/user-attachments/assets/30cedb02-eb3c-4f2f-aa9a-c2e5bf606974)
+![bbee0062-71b8-4c24-826d-fb29c60492a4](https://github.com/user-attachments/assets/ba641279-d039-475b-a89c-c5785ce6a4d2)
+
+
 
 ## Requisistos 
 - Python 3.9
