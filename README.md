@@ -7,6 +7,7 @@ El Sistema Nervioso Autónomo (SNA) regula funciones fisiológicas esenciales, e
 
 Para el análisis de la HRV, la Transformada Wavelet representa una herramienta analítica robusta, ya que permite la descomposición multiescala de la señal ECG en distintos componentes frecuenciales. A diferencia de métodos clásicos como la Transformada Rápida de Fourier (FFT), la wavelet ofrece una resolución simultánea en tiempo y frecuencia, lo cual es especialmente útil para estudiar señales no estacionarias como el ECG. Esta capacidad permite identificar con mayor precisión eventos transitorios, modulaciones de frecuencia y patrones de comportamiento autonómico, proporcionando así una caracterización más detallada de la dinámica cardíaca.
 
+
 ![image](https://github.com/user-attachments/assets/25b2aa97-2656-469d-9434-57fb6d3c9407) 
 
 Para el desarrollo de este trabajo se utilizó una wavelet tipo Morlet, la cual permite descomponer la señal ECG en sus componentes frecuenciales e identificar patrones temporales y espectrales complejos con alta resolución. Esta transformada resulta particularmente útil para el análisis de la Variabilidad de la Frecuencia Cardíaca (HRV), ya que facilita la evaluación simultánea en el dominio tiempo-frecuencia. Entre los componentes de interés se encuentran la banda de baja frecuencia (LF, 0.04–0.15 Hz), que refleja predominantemente la actividad simpática modulada por los barorreflejos, y la banda de alta frecuencia (HF, 0.15–0.4 Hz), estrechamente relacionada con la actividad parasimpática y sincronizada con el ritmo respiratorio. El cociente entre ambas (LF/HF) se utiliza comúnmente como un índice del equilibrio autonómico: valores elevados indican un predominio simpático, mientras que valores bajos sugieren una mayor influencia vagal. Esta relación proporciona información clínicamente relevante sobre la modulación cardiovascular por parte del sistema nervioso autónomo, permitiendo una evaluación más precisa del estado fisiológico del individuo.
@@ -16,6 +17,7 @@ Para el desarrollo de este trabajo se utilizó una wavelet tipo Morlet, la cual 
 El RMSSD (Root Mean Square of the Successive Differences) es un parámetro en el dominio del tiempo que refleja la actividad del sistema nervioso parasimpático. Valores elevados de RMSSD se asocian con un estado fisiológico de recuperación eficiente y equilibrio autonómico, tanto a nivel físico como mental. En contraste, valores reducidos indican un predominio simpático, lo cual puede estar vinculado a estados de estrés agudo, fatiga o sobreentrenamiento. Por su parte, el pNN50 (porcentaje de intervalos R-R consecutivos que difieren en más de 50 ms) cuantifica la variabilidad a corto plazo de la frecuencia cardíaca. Un porcentaje elevado de pNN50 se asocia con una mayor modulación parasimpática y un estado de relajación, mientras que valores bajos pueden reflejar disfunción autonómica, estrés crónico o trastornos cardiovasculares. En conjunto, ambos indicadores ofrecen una evaluación complementaria y robusta del tono autonómico y su impacto sobre el estado fisiológico y clínico del individuo.
 
 **Desviación estándar:**
+
 ![image](https://github.com/user-attachments/assets/9f63ced9-92a0-43dc-b519-ecf8094b1555)
 
 ![image](https://github.com/user-attachments/assets/f5a49a1f-5dec-484b-b6bf-c7b6f47641a2) 
@@ -26,6 +28,7 @@ El RMSSD (Root Mean Square of the Successive Differences) es un parámetro en el
 Para la adquisición de la señal electrocardiográfica (ECG), se empleó una tarjeta de adquisición de datos NI DAQ-6004, la cual proporciona una resolución de 12 bits, correspondiente a 4096 niveles de cuantización. La frecuencia de muestreo se configuró en 800 Hz, un valor considerablemente superior al mínimo establecido por el teorema de Nyquist. Dado que las componentes espectrales de la señal ECG se encuentran típicamente en el rango de 0.05 Hz a 100 Hz, una frecuencia de muestreo de al menos 200 Hz sería teóricamente suficiente para evitar aliasing. No obstante, se optó por una frecuencia más elevada con el fin de capturar con mayor precisión los detalles transitorios y mejorar la calidad general de la señal adquirida. Esta configuración implica un intervalo de muestreo de 1.25 milisegundos entre cada muestra.
 
 En esta primera etapa del experimento, se realizó la captura de la señal ECG en condiciones de reposo, registrando las variaciones de voltaje asociadas a la actividad eléctrica del corazón. La señal obtenida corresponde a una versión cruda o sin procesar, en la cual pueden observarse picos anómalos y presencia de ruido, lo que evidencia la necesidad de un adecuado preprocesamiento para su análisis posterior.
+
 ![image](https://github.com/user-attachments/assets/1b0464ad-2829-4870-ba29-a9d0bba600c6)
 
 A continuación se evidencia el codigo utilizado para la conexcion el codigo completo se encuentra en los archivos 
@@ -184,6 +187,7 @@ def actualizar_wavelet_y_bandas(self, datos):
 ```
 
 #### Usuario normal
+
 ![image](https://github.com/user-attachments/assets/5d32a850-1300-4204-a5ff-55726ff5bc90)
 
 ![image](https://github.com/user-attachments/assets/e876e39f-5d11-4b48-8334-32395e3d4959)
