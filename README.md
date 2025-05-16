@@ -3,32 +3,24 @@
 En esta práctica de laboratorio se llevó a cabo la captura de un electrocardiograma (ECG), así como su posterior preprocesamiento, con el objetivo de analizar en profundidad las características de la señal cardíaca. Un aspecto fundamental de este estudio fue el análisis de la variabilidad de la frecuencia cardíaca (HRV), un parámetro clave para evaluar el funcionamiento del sistema nervioso autónomo y la salud cardiovascular en general. Para ello, se empleó la transformada wavelet, una herramienta matemática que permite identificar cambios en las frecuencias características de la señal y analizar su dinámica temporal con alta precisión.
 
 ## Conceptos previos de análisis del Sistema Nervioso Autónomo mediante HRV y Transformada Wavelet
-El Sistema Nervioso Autónomo regula funciones vitales como la frecuencia cardíaca, siendo clave en la Variabilidad de la Frecuencia Cardíaca (HRV); el cual es un indicador de salud cardiovascular que  se evidencia en las variaciones en los intervalos del ciclo cardiaco. Un mayor HRV indica un SNA equilibrado, mientras que una reducción puede asociarse a estrés o patologías .
+El sistema nervioso autónomo regula funciones vitales como la frecuencia cardíaca, siendo clave en la Variabilidad de la Frecuencia Cardíaca (HRV); el cual es un indicador de salud cardiovascular que  se evidencia en las variaciones en los intervalos del ciclo cardiaco. Un mayor HRV indica un SNA equilibrado, mientras que una reducción puede asociarse a estrés o patologías.
 
-El Sistema Nervioso Autónomo (SNA) regula funciones vitales como la frecuencia cardíaca, desempeñando un papel fundamental en la Variabilidad de la Frecuencia Cardíaca (HRV). Este parámetro, que cuantifica las variaciones en los intervalos del ciclo cardíaco (R-R), constituye un importante indicador de salud cardiovascular. Valores elevados de HRV reflejan un equilibrio adecuado del SNA, mientras que su disminución puede asociarse a condiciones de estrés o diversas patologías cardíacas. Para su análisis, la Transformada Wavelet es una herramienta importante puesto que permite descomponer la señal ECG en diferentes componentes frecuenciales, identificando patrones temporales y espectrales que métodos tradicionales (como la FFT) podrían pasar por alto. Esto facilita la detección de alteraciones en el dominio del tiempo-frecuencia, ofreciendo una visión más completa de la dinámica cardíaca y su relación con el SNA.
-
+El Sistema Nervioso Autónomo (SNA) regula funciones vitales como la frecuencia cardíaca, desempeñando un papel fundamental en la Variabilidad de la Frecuencia Cardíaca (HRV). Este parámetro, que cuantifica las variaciones en los intervalos del ciclo cardíaco (R-R), constituye un importante indicador de salud cardiovascular. Valores elevados de HRV reflejan un equilibrio adecuado del SNA, mientras que su disminución puede asociarse a condiciones de estrés o diversas patologías cardíacas. Para su análisis, la Transformada Wavelet es una herramienta importante, puesto que permite descomponer la señal ECG en diferentes componentes frecuenciales, identificando patrones temporales y espectrales que métodos tradicionales (como la FFT) podrían pasar por alto. Esto facilita la detección de alteraciones en el dominio del tiempo-frecuencia, ofreciendo una visión más completa de la dinámica cardíaca y su relación con el SNA.
 
 ![image](https://github.com/user-attachments/assets/25b2aa97-2656-469d-9434-57fb6d3c9407) 
 
-
-
-
-
-Para el desarrollo de este trabajo se utilizo una wavelwet tipo morlet la cual nos permite descomponer la señal ECG en sus componentes frecuenciales e identificar patrones temporales y espectrales complejos. El componente de baja frecuencia (LF, 0.04-0.15 Hz), que refleja predominantemente la actividad simpática modulada por los barorreflejos, y la banda de alta frecuencia (HF, 0.15-0.4 Hz), asociada a la influencia parasimpática y sincronizada con la respiración. El cociente LF/HF cuantifica el equilibrio autonómico, donde valores elevados sugieren predominio simpático, mientras que valores reducidos indican mayor tono vagal, proporcionando así información clínicamente relevante sobre la regulación cardiovascular.  Sirve para evaluar el equilibrio entre el sistema simpático y parasimpático. 
+Para el desarrollo de este trabajo se utilizó una wavelwet tipo morlet la cual nos permite descomponer la señal ECG en sus componentes frecuenciales e identificar patrones temporales y espectrales complejos. El componente de baja frecuencia (LF, 0.04-0.15 Hz), que refleja predominantemente la actividad simpática modulada por los barorreflejos, y la banda de alta frecuencia (HF, 0.15-0.4 Hz), asociada a la influencia parasimpática y sincronizada con la respiración. El cociente LF/HF cuantifica el equilibrio autonómico, donde valores elevados sugieren predominio simpático, mientras que valores reducidos indican mayor tono vagal, proporcionando así información clínicamente relevante sobre la regulación cardiovascular.  Sirve para evaluar el equilibrio entre el sistema simpático y parasimpático. 
 
 ![image](https://github.com/user-attachments/assets/b8b23c58-225d-49c5-9a56-25c0050524bc)
-
 
 El RMSSD (Raíz Cuadrada de la Media de las Diferencias Sucesivas) es un indicador de la actividad del sistema nervioso parasimpático, donde valores elevados reflejan un estado de recuperación óptimo de  un tema físico y mental. Por el contrario, un RMSSD reducido sugiere predominio de la actividad simpática, vinculado a situaciones de estrés, fatiga, sobreentrenamiento. Por su parte, el pNN50 (Porcentaje de Intervalos R-R con Diferencias Superiores a 50 ms) cuantifica la variabilidad instantánea entre latidos: un porcentaje alto indica una función autonómica saludable y un estado de relajación, mientras que valores bajos pueden señalar estrés, ansiedad o deterioro en la regulación cardiovascular. Ambos parámetros, en conjunto, proporcionan una visión integral del equilibrio autonómico y su relación con el estado fisiológico y clínico del individuo.
 
 Desviación estándar:
 ![image](https://github.com/user-attachments/assets/9f63ced9-92a0-43dc-b519-ecf8094b1555)
 
-
 ![image](https://github.com/user-attachments/assets/f5a49a1f-5dec-484b-b6bf-c7b6f47641a2) 
 
 ![image](https://github.com/user-attachments/assets/078bef15-bc74-43c2-b8ce-f69f1839af08)
-
 
 ## Características de la señal adquirida
 Para la adquisición de la señal electrocardiográfica (ECG), se utilizó una tarjeta de adquisición de datos NI DAQ-6004; la cual ofrece una resolución de 12 bits, equivalente a 4096 niveles de cuantización. La frecuencia de muestreo se configuró en 800 Hz, un valor significativamente superior al mínimo requerido por el teorema de Nyquist. Dado que las señales cardíacas típicas se encuentran en un rango de 0.05 Hz a 100 Hz, una frecuencia de muestreo de al menos 200 Hz habría sido suficiente para evitar aliasing. Sin embargo, se optó por un muestreo más alta para  así garantizar una mayor precisión en la captura de detalles transitorios y mejorar la calidad de la señal. El tiempo de muestreo utilizado es de 1.25 milisegundos entre cada muestra
@@ -210,9 +202,46 @@ El RMSSD, así como el pNN50, son más altos en el usuario normal. Esto quiere d
 Como podemos evidenciar, se revisan las frecuencias y, en comparación, se logran observar algunos cambios clave. Entre estos, se nota que hay un poco más de inestabilidad en las curvas del usuario en estrés, así como también una mayor intensidad en algunas zonas rojas, lo cual indica que la onda tiene mayor energía. Esto se debe a una mayor actividad simpática. Aparte tambien podemos evidenciar que las rojas actuan alrededor del complejo QRS y las azules  despues lo que representa la ST.
 
 ## Anexo: Diagrama de flujo y preprocesamiento de la señal
-
-
 Se elaboro un diagrama  donde podrmos conocer el expliciatamente cómo llevarán a cabo el proyecto, las técnicas y herramientas que van a utilizar y los resultados que vana obtener
 Anexo 
 
-Describe completamente el diseño de los filtros utilizados con todos sus parámetros, y justifica adecuadamente su elección.
+Captura de la Señal ECG – Protocolo Experimental del Paciente
+Con el fin de evaluar la variabilidad de la frecuencia cardíaca (HRV) bajo condiciones contrastantes de reposo y estrés agudo, se implementó un protocolo experimental controlado, diseñado para inducir respuestas autonómicas medibles. Este protocolo permite una caracterización precisa de la dinámica cardíaca utilizando herramientas de análisis en el dominio del tiempo y tiempo-frecuencia.
+
+Preparación del sujeto
+El sujeto fue ubicado en posición sedente, en una habitación con temperatura controlada (~22°C), iluminación tenue y mínima estimulación ambiental. Se colocaron electrodos de superficie en una configuración de derivación única, con la piel previamente limpiada con alcohol isopropílico para reducir la impedancia. La señal electrocardiográfica (ECG) fue capturada mediante una tarjeta NI DAQ-6004, con una resolución de 12 bits y frecuencia de muestreo de 800 Hz, conectada a un software de adquisición personalizado desarrollado en Python.
+
+Estímulo previo: Consumo de Red Bull
+Treinta minutos antes de iniciar la captura de la señal, el sujeto ingirió una lata de Red Bull (250 mL), una bebida energética que contiene aproximadamente 80 mg de cafeína, además de taurina, glucuronolactona y azúcares. Este tipo de compuestos actúan sobre el sistema nervioso simpático, y se espera que produzcan los siguientes efectos fisiológicos:
+
+Aumento de la frecuencia cardíaca (taquicardia leve).
+
+Disminución de la HRV, particularmente en los índices parasimpáticos como RMSSD y pNN50.
+
+Reducción de la potencia espectral en la banda de alta frecuencia (HF) y aumento relativo en la banda de baja frecuencia (LF), reflejando un desplazamiento hacia un tono simpático predominante.
+
+Este estímulo farmacológico se utilizó para establecer un estado fisiológico de base con activación simpática leve sostenida, lo cual es relevante para evaluar el impacto posterior de un evento de estrés agudo.
+
+Captura de la señal ECG
+La señal fue capturada de forma continua durante 15 minutos, incluyendo tres fases claramente definidas:
+
+Reposo inicial (0–2 minutos): Tras el tiempo de espera post-ingesta, se inició la captura con el paciente en reposo. Esta fase buscó registrar el estado autonómico basal bajo el efecto residual de la bebida energética, en ausencia de estímulos externos.
+
+Estímulo estresante (2–4 minutos): A los dos minutos del inicio, un miembro cercano (hermana del paciente) ingresó a la habitación, tomó el teléfono móvil del sujeto y comenzó a manipularlo sin previo aviso. Esta situación generó una respuesta emocional de estrés moderado, mantenida durante dos minutos. Se esperaba observar:
+
+Un incremento adicional en la frecuencia cardíaca.
+
+Una reducción aguda de los parámetros de HRV (RMSSD, pNN50).
+
+Cambios en la potencia espectral, con predominancia simpática (↑LF, ↓HF).
+
+Recuperación (4–15 minutos): Finalizado el estímulo, el dispositivo fue devuelto al paciente, quien permaneció en reposo durante los siguientes 11 minutos. Esta etapa permitió evaluar la capacidad del sistema nervioso autónomo para restablecer el equilibrio, reflejado en una recuperación progresiva del tono parasimpático.
+
+Segmentación para análisis
+Aunque la captura se extendió durante 15 minutos, para efectos del análisis se extrajo un segmento representativo de 5 minutos, que incluyó parte del reposo inicial, la fase de estrés y el inicio del período de recuperación. Esta ventana fue seleccionada en base a marcas temporales internas registradas en el sistema, asegurando una segmentación precisa para el análisis en el dominio del tiempo (índices estadísticos de HRV) y tiempo-frecuencia (transformada wavelet).
+
+![Option 1](https://github.com/user-attachments/assets/ebc4093b-bb2f-4e66-8eb9-3d6c4bb5aee4)
+![Option 1 (2)](https://github.com/user-attachments/assets/7e01a14a-ce72-471a-abe2-d0dac95773ca)
+![Option 1 (3)](https://github.com/user-attachments/assets/9c17836f-59ec-498e-940b-3c778f8e661a)
+
+
