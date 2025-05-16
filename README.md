@@ -262,3 +262,18 @@ Aunque la captura se extendió durante 15 minutos, para efectos del análisis se
 ![Option 1 (2)](https://github.com/user-attachments/assets/7e01a14a-ce72-471a-abe2-d0dac95773ca)
 ![Option 1 (3)](https://github.com/user-attachments/assets/9c17836f-59ec-498e-940b-3c778f8e661a)
 
+## Requisistos 
+- Python 3.9
+- matplotlib
+- PyQt5
+- matplotlib
+- numpy
+- scipy
+- pywt
+- pyserial	
+- threading, struct, time	Módulos estándar 
+
+### Contact information
+-  est.nikoll.bonilla@unimilitar.edu.co
+-  est.hugo.perez@unimilitar.edu.co
+-  est.yonatan.franco@unimilitar.edu.co
