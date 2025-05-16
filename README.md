@@ -220,4 +220,5 @@ La importancia de esta  radica en el poder analizar variaciones en la actividad 
 Se elaboro un diagrama  donde podrmos conocer el expliciatamente cómo llevarán a cabo el proyecto, las técnicas y herramientas que van a utilizar y los resultados que vana obtener
 Anexo 
 
-Describe completamente el diseño de los filtros utilizados con todos sus parámetros, y justifica adecuadamente su elección.
+![image](https://github.com/user-attachments/assets/51df8919-481b-4670-8fc9-22aea6918971)
+
