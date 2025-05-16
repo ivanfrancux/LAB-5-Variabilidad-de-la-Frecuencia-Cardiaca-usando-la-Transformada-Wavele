@@ -222,3 +222,43 @@ Anexo
 
 ![image](https://github.com/user-attachments/assets/51df8919-481b-4670-8fc9-22aea6918971)
 
+<<<<<<< patch-2
+Captura de la Señal ECG – Protocolo Experimental del Paciente
+Con el fin de evaluar la variabilidad de la frecuencia cardíaca (HRV) bajo condiciones contrastantes de reposo y estrés agudo, se implementó un protocolo experimental controlado, diseñado para inducir respuestas autonómicas medibles. Este protocolo permite una caracterización precisa de la dinámica cardíaca utilizando herramientas de análisis en el dominio del tiempo y tiempo-frecuencia.
+
+Preparación del sujeto
+El sujeto fue ubicado en posición sedente, en una habitación con temperatura controlada (~22°C), iluminación tenue y mínima estimulación ambiental. Se colocaron electrodos de superficie en una configuración de derivación única, con la piel previamente limpiada con alcohol isopropílico para reducir la impedancia. La señal electrocardiográfica (ECG) fue capturada mediante una tarjeta NI DAQ-6004, con una resolución de 12 bits y frecuencia de muestreo de 800 Hz, conectada a un software de adquisición personalizado desarrollado en Python.
+
+Estímulo previo: Consumo de Red Bull
+Treinta minutos antes de iniciar la captura de la señal, el sujeto ingirió una lata de Red Bull (250 mL), una bebida energética que contiene aproximadamente 80 mg de cafeína, además de taurina, glucuronolactona y azúcares. Este tipo de compuestos actúan sobre el sistema nervioso simpático, y se espera que produzcan los siguientes efectos fisiológicos:
+
+Aumento de la frecuencia cardíaca (taquicardia leve).
+
+Disminución de la HRV, particularmente en los índices parasimpáticos como RMSSD y pNN50.
+
+Reducción de la potencia espectral en la banda de alta frecuencia (HF) y aumento relativo en la banda de baja frecuencia (LF), reflejando un desplazamiento hacia un tono simpático predominante.
+
+Este estímulo farmacológico se utilizó para establecer un estado fisiológico de base con activación simpática leve sostenida, lo cual es relevante para evaluar el impacto posterior de un evento de estrés agudo.
+
+Captura de la señal ECG
+La señal fue capturada de forma continua durante 15 minutos, incluyendo tres fases claramente definidas:
+
+Reposo inicial (0–2 minutos): Tras el tiempo de espera post-ingesta, se inició la captura con el paciente en reposo. Esta fase buscó registrar el estado autonómico basal bajo el efecto residual de la bebida energética, en ausencia de estímulos externos.
+
+Estímulo estresante (2–4 minutos): A los dos minutos del inicio, un miembro cercano (hermana del paciente) ingresó a la habitación, tomó el teléfono móvil del sujeto y comenzó a manipularlo sin previo aviso. Esta situación generó una respuesta emocional de estrés moderado, mantenida durante dos minutos. Se esperaba observar:
+
+Un incremento adicional en la frecuencia cardíaca.
+
+Una reducción aguda de los parámetros de HRV (RMSSD, pNN50).
+
+Cambios en la potencia espectral, con predominancia simpática (↑LF, ↓HF).
+
+Recuperación (4–15 minutos): Finalizado el estímulo, el dispositivo fue devuelto al paciente, quien permaneció en reposo durante los siguientes 11 minutos. Esta etapa permitió evaluar la capacidad del sistema nervioso autónomo para restablecer el equilibrio, reflejado en una recuperación progresiva del tono parasimpático.
+
+Segmentación para análisis
+Aunque la captura se extendió durante 15 minutos, para efectos del análisis se extrajo un segmento representativo de 5 minutos, que incluyó parte del reposo inicial, la fase de estrés y el inicio del período de recuperación. Esta ventana fue seleccionada en base a marcas temporales internas registradas en el sistema, asegurando una segmentación precisa para el análisis en el dominio del tiempo (índices estadísticos de HRV) y tiempo-frecuencia (transformada wavelet).
+
+![Option 1](https://github.com/user-attachments/assets/ebc4093b-bb2f-4e66-8eb9-3d6c4bb5aee4)
+![Option 1 (2)](https://github.com/user-attachments/assets/7e01a14a-ce72-471a-abe2-d0dac95773ca)
+![Option 1 (3)](https://github.com/user-attachments/assets/9c17836f-59ec-498e-940b-3c778f8e661a)
+
