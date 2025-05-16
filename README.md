@@ -210,6 +210,7 @@ El RMSSD, así como el pNN50, son más altos en el usuario normal. Esto quiere d
 Como podemos evidenciar, se revisan las frecuencias y, en comparación, se logran observar algunos cambios clave. Entre estos, se nota que hay un poco más de inestabilidad en las curvas del usuario en estrés, así como también una mayor intensidad en algunas zonas rojas, lo cual indica que la onda tiene mayor energía. Esto se debe a una mayor actividad simpática. Aparte tambien podemos evidenciar que las rojas actuan alrededor del complejo QRS y las azules  despues lo que representa la ST.
 ![image](https://github.com/user-attachments/assets/97bf5d14-2d90-42a5-bb9f-126f07d59f9f)
 
+La importancia de esta  radica en el poder analizar variaciones en la actividad autónoma del corazón (HRV).  La escala utilizada es en términos de frecuencia, específicamente de 0 a 0.5 Hz, porque eso es lo que corresponde a los rangos fisiológicos típicos de la variabilidad cardíaca (HRV).
 
 
 
